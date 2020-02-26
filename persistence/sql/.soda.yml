@@ -1,14 +1,19 @@
 development:
-  url: sqlite://a/b
+  dialect: "mysql"      #数据库类型
+  database: "kratos"    #数据库名称
+  host: "localhost"     #数据库连接地址
+  port: "3306"          #数据库连接端口号
+  user: "root"          #数据库连接用户名账号
+  password: "admin"     #数据库连接账号密码
+#
+#sqlite:
+#  url: sqlite://a/b
+#
+#postgres:
+#  url: postgres://a/b
+#
+#mysql:
+#  url: mysql://tcp(a)/b?parseTime=true&multiStatements=true
 
-sqlite:
-  url: sqlite://a/b
-
-postgres:
-  url: postgres://a/b
-
-mysql:
-  url: mysql://tcp(a)/b?parseTime=true&multiStatements=true
-
-cockroach:
-  url: crdb://a/b
+#cockroach:
+#  url: crdb://a/b
