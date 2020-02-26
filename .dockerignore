@@ -1,0 +1,11 @@
+docs/adopters
+.releaser
+.github
+.circleci
+tmp
+scripts
+.idea
+.git/
+database.yaml
+contrib/quickstart
+contrib/swagutil

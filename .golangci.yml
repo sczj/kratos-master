@@ -1,0 +1,24 @@
+linters:
+  enable:
+    - deadcode
+    - errcheck
+    - gosimple
+    - govet
+    - staticcheck
+    - structcheck
+    - typecheck
+    - unused
+    - bodyclose
+    - dupl
+    - gosec
+    - varcheck
+  disable:
+    - ineffassign
+    - godox
+
+run:
+  skip-dirs:
+    - sdk/
+  skip-files:
+    - ".+_test.go"
+    - "internal/faker.go"

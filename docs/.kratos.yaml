@@ -1,0 +1,81 @@
+serve:
+  admin:
+    port: 1234
+    host: 127.0.0.1
+  public:
+    port: 1235
+    host: 127.0.0.1
+
+dsn: mysql://root:admin@tcp(localhost:3306)/kratos?parseTime=true&multiStatements=true
+
+selfservice:
+  strategies:
+    password:
+      enabled: true
+
+  logout:
+    redirect_to: http://127.0.0.1:3000/auth/login
+
+  login:
+    request_lifespan: 10m
+    after:
+      password:
+        -
+          job: session
+        -
+          job: redirect
+          config:
+            default_redirect_url: http://127.0.0.1:3000/
+            allow_user_defined_redirect: true
+
+  registration:
+    request_lifespan: 10m
+    after:
+      password:
+        -
+          job: session
+        -
+          job: redirect
+          config:
+            default_redirect_url: http://127.0.0.1:3000/auth/registration
+            allow_user_defined_redirect: true
+
+log:
+  level: debug
+
+secrets:
+  session:
+    - PLEASE-CHANGE-ME-I-AM-VERY-INSECURE
+
+urls:
+  login_ui: http://127.0.0.1:3000/auth/login
+  registration_ui: http://127.0.0.1:3000/auth/registration
+  error_ui: http://127.0.0.1:3000/error
+  profile_ui: http://127.0.0.1:3000/auth/profile
+
+  # These are undefined because not available in this demo
+  mfa_ui: http://127.0.0.1:3000/
+  verify_ui: http://127.0.0.1:3000/
+
+  self:
+    public: http://127.0.0.1:1235/  #KRATOS_BROWSER_URL
+    admin: http://127.0.0.1:1234/   #KRATOS_ADMIN_URL
+  default_return_to: http://127.0.0.1:1235/
+  whitelisted_return_to_domains:
+    - http://127.0.0.1:1235
+
+hashers:
+  argon2:
+    parallelism: 1
+    memory: 131072
+    iterations: 2
+    salt_length: 16
+    key_length: 16
+
+identity:
+  traits:
+    default_schema_url: http://127.0.0.1:3000/identity.traits.schema.json
+
+courier:
+  smtp:
+    connection_uri: smtp://test:test@mailhog:1025/

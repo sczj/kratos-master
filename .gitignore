@@ -1,0 +1,9 @@
+cover.out
+.idea/
+tmp/
+.DS_Store
+./kratos
+coverage.txt
+packrd/
+*-packr.go
+dist/
